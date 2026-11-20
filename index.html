@@ -1,0 +1,1420 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>360影视大全 - 影视内容聚合平台,高清正版精品汇聚</title>
+<meta name="description" content="360影视大全官方网站，汇聚电影、剧集、纪录片与原创影像的影视内容聚合平台，为企业与创作者搭建高品质内容生态，持续为用户提供值得信赖的精品影视内容。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b2a4a'/%3E%3Ccircle cx='32' cy='32' r='15' fill='none' stroke='%23ffb703' stroke-width='4'/%3E%3Cpath d='M28 24 L43 32 L28 40 Z' fill='%23ffb703'/%3E%3C/svg%3E">
+<style>
+:root{
+  --sf-navy:#12203c;
+  --sf-navy-2:#1b2d52;
+  --sf-amber:#ffb703;
+  --sf-amber-soft:#ffe3a3;
+  --sf-ice:#f4f6fb;
+  --sf-line:#e3e8f2;
+  --sf-text:#1d2431;
+  --sf-muted:#5d6878;
+  --sf-shadow:0 14px 34px rgba(18,32,60,.10);
+  --sf-radius:16px;
+  --sf-sticky:104px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scroll-padding-top:var(--sf-sticky);}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",system-ui,-apple-system,sans-serif;
+  color:var(--sf-text);
+  background:var(--sf-ice);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+ul{list-style:none;}
+.sf-wrap{width:min(1180px,92%);margin:0 auto;}
+.sf-sticky-bar{position:sticky;top:0;z-index:100;}
+/* 公告条 */
+.sf-notice{
+  background:linear-gradient(90deg,var(--sf-navy) 0%,var(--sf-navy-2) 60%,#243d6b 100%);
+  color:#eaeff9;font-size:13.5px;letter-spacing:.2px;
+}
+.sf-notice-inner{
+  display:flex;align-items:center;gap:14px;padding:9px 0;flex-wrap:wrap;
+}
+.sf-notice-tag{
+  background:var(--sf-amber);color:#241a00;font-weight:700;font-size:12px;
+  padding:2px 9px;border-radius:6px;flex:none;letter-spacing:.5px;
+}
+.sf-notice-text{flex:1;min-width:200px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.sf-notice-text b{color:var(--sf-amber-soft);font-weight:600;}
+.sf-notice-dots{display:flex;gap:6px;flex:none;}
+.sf-notice-dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.35);transition:.25s;}
+.sf-notice-dots i.is-on{background:var(--sf-amber);width:16px;border-radius:4px;}
+/* 页头 */
+.sf-header{
+  background:rgba(255,255,255,.96);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--sf-line);
+}
+.sf-header-inner{display:flex;align-items:center;gap:22px;padding:14px 0;flex-wrap:wrap;}
+.sf-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;color:var(--sf-navy);flex:none;}
+.sf-logo-mark{
+  width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--sf-navy),#2c4a83);
+  display:grid;place-items:center;position:relative;box-shadow:0 6px 14px rgba(18,32,60,.25);
+}
+.sf-logo-mark::before{
+  content:"";width:16px;height:16px;border:3px solid var(--sf-amber);border-radius:50%;
+}
+.sf-logo-mark::after{
+  content:"";position:absolute;border-left:7px solid var(--sf-amber);
+  border-top:5px solid transparent;border-bottom:5px solid transparent;margin-left:2px;
+}
+.sf-logo small{display:block;font-size:10.5px;color:var(--sf-muted);font-weight:500;letter-spacing:2px;}
+.sf-nav{display:flex;gap:4px;flex:1;flex-wrap:wrap;}
+.sf-nav a{
+  padding:8px 13px;border-radius:9px;font-size:14.5px;color:#37435a;font-weight:500;transition:.22s;
+}
+.sf-nav a:hover,.sf-nav a.is-active{background:#eef2fa;color:var(--sf-navy);font-weight:700;}
+.sf-search{
+  display:flex;align-items:center;gap:8px;border:1px solid var(--sf-line);
+  border-radius:11px;padding:5px 6px 5px 13px;background:#f8fafd;min-width:230px;
+}
+.sf-search input{
+  border:none;outline:none;background:transparent;font-size:14px;width:100%;color:var(--sf-text);
+}
+.sf-search button{
+  background:var(--sf-navy);color:#fff;font-size:13px;padding:7px 14px;border-radius:8px;font-weight:600;transition:.22s;
+}
+.sf-search button:hover{background:#25406f;}
+.sf-burger{display:none;font-size:22px;color:var(--sf-navy);padding:4px 8px;}
+.sf-search-tip{font-size:12.5px;color:var(--sf-muted);padding-top:6px;min-height:0;}
+.sf-search-tip.is-hit{color:#0f7a4d;}
+/* 首屏 */
+.sf-hero{background:linear-gradient(160deg,#13223f 0%,#1b2d52 55%,#26406f 100%);color:#eef3fc;position:relative;overflow:hidden;}
+.sf-hero::after{
+  content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,183,3,.22),transparent 68%);
+}
+.sf-hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:46px;align-items:center;padding:56px 0 62px;position:relative;z-index:1;}
+.sf-hero h1{font-size:40px;line-height:1.22;letter-spacing:.5px;font-weight:800;margin-bottom:6px;}
+.sf-hero h1 em{font-style:normal;color:var(--sf-amber);}
+.sf-hero-badge{
+  display:inline-flex;align-items:center;gap:7px;background:rgba(255,183,3,.14);
+  border:1px solid rgba(255,183,3,.45);color:var(--sf-amber-soft);
+  font-size:12.5px;padding:4px 12px;border-radius:999px;margin-bottom:16px;letter-spacing:1px;
+}
+.sf-hero-lead{font-size:15.5px;color:#c3cfe4;margin-bottom:20px;}
+.sf-hero-desc{font-size:14.5px;color:#b7c4dc;margin-bottom:26px;}
+.sf-hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:34px;}
+.sf-btn{
+  display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:11px;
+  font-size:14.5px;font-weight:700;transition:.24s;
+}
+.sf-btn-primary{background:var(--sf-amber);color:#221a00;}
+.sf-btn-primary:hover{background:#ffc736;transform:translateY(-2px);box-shadow:0 10px 22px rgba(255,183,3,.32);}
+.sf-btn-ghost{border:1px solid rgba(255,255,255,.35);color:#e6edf9;}
+.sf-btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px);}
+.sf-stats{display:flex;gap:38px;flex-wrap:wrap;}
+.sf-stat strong{display:block;font-size:26px;color:var(--sf-amber);font-weight:800;line-height:1.2;}
+.sf-stat span{font-size:12.5px;color:#a8b7d2;letter-spacing:.5px;}
+.sf-hero-visual{position:relative;}
+.sf-hero-main{
+  border-radius:20px;overflow:hidden;box-shadow:0 26px 50px rgba(0,0,0,.42);
+  border:1px solid rgba(255,255,255,.14);
+}
+.sf-hero-main img{width:100%;aspect-ratio:16/9;object-fit:cover;}
+.sf-hero-chips{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+.sf-hero-chips span{
+  font-size:12.5px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);color:#c9d5ea;
+}
+/* 通用区块 */
+.sf-section{padding:62px 0;}
+.sf-section--alt{background:#fff;}
+.sf-sec-head{margin-bottom:34px;max-width:760px;}
+.sf-eyebrow{
+  font-size:12.5px;letter-spacing:3px;color:#8a94a6;font-weight:700;text-transform:uppercase;margin-bottom:8px;
+}
+.sf-sec-head h2{font-size:27px;font-weight:800;color:var(--sf-navy);letter-spacing:.4px;line-height:1.35;}
+.sf-sec-head h2 em{font-style:normal;color:#c98a00;}
+.sf-sec-head p{margin-top:10px;font-size:14.5px;color:var(--sf-muted);}
+/* 焦点视频 */
+.sf-focus-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:24px;}
+.sf-video-card{
+  background:#fff;border-radius:var(--sf-radius);overflow:hidden;
+  box-shadow:var(--sf-shadow);transition:.28s;position:relative;
+  display:flex;flex-direction:column;
+}
+.sf-video-card:hover{transform:translateY(-4px);box-shadow:0 20px 42px rgba(18,32,60,.16);}
+.sf-thumb{position:relative;overflow:hidden;background:#0e1830;}
+.sf-thumb img{width:100%;aspect-ratio:16/9;object-fit:cover;transition:.4s;}
+.sf-video-card:hover .sf-thumb img{transform:scale(1.05);}
+.sf-thumb-tag{
+  position:absolute;top:10px;left:10px;background:rgba(18,32,60,.85);color:#ffe3a3;
+  font-size:11.5px;padding:3px 9px;border-radius:6px;letter-spacing:.5px;
+}
+.sf-thumb-play{
+  position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:.28s;
+  background:linear-gradient(180deg,rgba(10,18,36,.05),rgba(10,18,36,.45));
+}
+.sf-video-card:hover .sf-thumb-play{opacity:1;}
+.sf-thumb-play i{
+  width:52px;height:52px;border-radius:50%;background:rgba(255,183,3,.92);display:grid;place-items:center;
+  box-shadow:0 8px 22px rgba(0,0,0,.4);
+}
+.sf-thumb-play i::after{
+  content:"";border-left:15px solid #241a00;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;
+}
+.sf-card-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:9px;flex:1;}
+.sf-card-body h3{font-size:16.5px;font-weight:700;color:var(--sf-navy);line-height:1.5;}
+.sf-card-body h3:hover{color:#a87400;}
+.sf-card-desc{font-size:13.5px;color:var(--sf-muted);line-height:1.7;}
+.sf-card-meta{display:flex;align-items:center;gap:10px;font-size:12.5px;color:#7a8597;flex-wrap:wrap;}
+.sf-avatar{
+  width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
+  font-size:12px;font-weight:700;color:#fff;flex:none;
+}
+.sf-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.sf-tags span{font-size:11.5px;background:#f0f4fb;color:#4a5a75;padding:2px 9px;border-radius:999px;}
+.sf-card-actions{display:flex;gap:8px;align-items:center;margin-top:auto;padding-top:8px;border-top:1px dashed var(--sf-line);}
+.sf-act{
+  display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:#66738a;
+  padding:5px 10px;border-radius:8px;transition:.2s;
+}
+.sf-act:hover{background:#f0f4fb;color:var(--sf-navy);}
+.sf-act.is-liked{color:#d1435b;}
+.sf-act.is-saved{color:#c98a00;}
+.sf-focus-side{display:flex;flex-direction:column;gap:16px;}
+.sf-focus-side .sf-video-card{flex-direction:row;box-shadow:0 8px 20px rgba(18,32,60,.08);}
+.sf-focus-side .sf-thumb{width:42%;flex:none;}
+.sf-focus-side .sf-thumb img{height:100%;aspect-ratio:auto;object-fit:cover;}
+.sf-focus-side .sf-card-body{padding:13px 14px;}
+.sf-focus-side .sf-card-body h3{font-size:14.5px;}
+.sf-focus-side .sf-card-desc{font-size:12.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+/* 视频流 */
+.sf-stream-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+/* 专题 */
+.sf-topic-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.sf-topic{
+  border-radius:var(--sf-radius);overflow:hidden;position:relative;background:#0e1830;
+  box-shadow:var(--sf-shadow);transition:.3s;min-height:240px;display:flex;flex-direction:column;justify-content:flex-end;
+}
+.sf-topic:hover{transform:translateY(-5px);}
+.sf-topic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.sf-topic-shade{
+  position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,18,36,.05) 30%,rgba(10,18,36,.88) 100%);
+}
+.sf-topic-body{position:relative;padding:18px;color:#fff;}
+.sf-topic-body span{
+  font-size:11.5px;background:var(--sf-amber);color:#241a00;padding:2px 8px;border-radius:5px;font-weight:700;
+}
+.sf-topic-body h3{font-size:16px;margin:9px 0 5px;font-weight:700;line-height:1.45;}
+.sf-topic-body p{font-size:12.5px;color:#c9d4e6;line-height:1.6;}
+.sf-topic-state{margin-top:8px;font-size:11.5px;color:var(--sf-amber-soft);}
+/* 创作者 */
+.sf-author-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.sf-author{
+  background:#fff;border-radius:var(--sf-radius);padding:22px;box-shadow:var(--sf-shadow);
+  border:1px solid var(--sf-line);transition:.26s;
+}
+.sf-author:hover{transform:translateY(-4px);border-color:#c8d5ec;}
+.sf-author-top{display:flex;align-items:center;gap:13px;margin-bottom:12px;}
+.sf-author-avatar{
+  width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
+  font-size:19px;font-weight:800;color:#fff;flex:none;
+}
+.sf-author-top h3{font-size:16px;color:var(--sf-navy);font-weight:700;}
+.sf-author-top small{font-size:12.5px;color:#8a94a6;}
+.sf-author p{font-size:13.5px;color:var(--sf-muted);line-height:1.7;margin-bottom:12px;}
+.sf-author-nums{display:flex;gap:20px;font-size:12.5px;color:#68748a;border-top:1px solid var(--sf-line);padding-top:12px;}
+.sf-author-nums b{color:var(--sf-navy);font-size:14px;}
+.sf-author-more{
+  display:inline-flex;margin-top:12px;font-size:12.5px;color:#a87400;font-weight:700;gap:4px;
+}
+.sf-author-more:hover{text-decoration:underline;}
+/* 深度解析 */
+.sf-about{background:linear-gradient(180deg,#fff,#f2f5fb);}
+.sf-about-box{
+  background:#fff;border-radius:22px;padding:44px;box-shadow:var(--sf-shadow);border:1px solid var(--sf-line);
+}
+.sf-about-box h2{font-size:25px;color:var(--sf-navy);margin-bottom:18px;font-weight:800;}
+.sf-about-box h3{font-size:17px;color:var(--sf-navy);margin:26px 0 10px;font-weight:700;display:flex;align-items:center;gap:9px;}
+.sf-about-box h3::before{content:"";width:5px;height:17px;border-radius:3px;background:var(--sf-amber);display:inline-block;}
+.sf-about-box p{font-size:14.5px;color:#3c4759;line-height:1.95;margin-bottom:10px;text-align:justify;}
+.sf-about-cols{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:8px;}
+/* 评论 */
+.sf-review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.sf-review{
+  background:#fff;border-radius:var(--sf-radius);padding:20px;box-shadow:0 8px 22px rgba(18,32,60,.07);
+  border-left:4px solid var(--sf-amber);transition:.24s;
+}
+.sf-review:hover{transform:translateY(-3px);}
+.sf-review-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.sf-review-head b{font-size:13.5px;color:var(--sf-navy);}
+.sf-review-head small{font-size:11.5px;color:#94a0b4;margin-left:auto;}
+.sf-review p{font-size:13.5px;color:#4b5769;line-height:1.78;}
+.sf-stars{color:#e0a100;font-size:12.5px;letter-spacing:2px;margin-top:9px;}
+/* 影像墙 */
+.sf-wall{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.sf-wall figure{
+  position:relative;border-radius:12px;overflow:hidden;box-shadow:0 8px 20px rgba(18,32,60,.1);background:#0e1830;
+}
+.sf-wall figure:nth-child(1),.sf-wall figure:nth-child(6){grid-column:span 2;}
+.sf-wall img{width:100%;aspect-ratio:16/10;object-fit:cover;transition:.4s;}
+.sf-wall figure:nth-child(1) img,.sf-wall figure:nth-child(6) img{aspect-ratio:16/9;}
+.sf-wall figure:hover img{transform:scale(1.07);}
+.sf-wall figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:16px 12px 10px;font-size:12.5px;color:#fff;
+  background:linear-gradient(180deg,transparent,rgba(10,18,36,.85));
+}
+/* 灵感 / 投稿 */
+.sf-tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.sf-tool{
+  background:#fff;border-radius:var(--sf-radius);padding:24px;border:1px dashed #c9d5ec;transition:.24s;
+}
+.sf-tool:hover{border-color:var(--sf-amber);background:#fffdf7;}
+.sf-tool-icon{
+  width:42px;height:42px;border-radius:12px;background:#eef2fa;display:grid;place-items:center;
+  font-size:19px;margin-bottom:13px;
+}
+.sf-tool h3{font-size:16px;color:var(--sf-navy);margin-bottom:7px;font-weight:700;}
+.sf-tool p{font-size:13.5px;color:var(--sf-muted);line-height:1.75;}
+/* 动态 */
+.sf-news-list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--sf-line);}
+.sf-news-item{
+  display:grid;grid-template-columns:110px 1fr auto;gap:18px;align-items:center;
+  padding:18px 6px;border-bottom:1px solid var(--sf-line);transition:.2s;
+}
+.sf-news-item:hover{background:#f8fafd;padding-left:14px;}
+.sf-news-item time{font-size:12.5px;color:#8a94a6;letter-spacing:.5px;}
+.sf-news-item h3{font-size:15px;font-weight:600;color:var(--sf-navy);}
+.sf-news-item h3 span{display:block;font-size:12.5px;color:var(--sf-muted);font-weight:400;margin-top:2px;}
+.sf-news-item em{
+  font-style:normal;font-size:11.5px;background:#eef2fa;color:#4a5a75;padding:3px 10px;border-radius:999px;
+}
+/* FAQ */
+.sf-faq{display:flex;flex-direction:column;gap:10px;max-width:900px;}
+.sf-faq details{
+  background:#fff;border:1px solid var(--sf-line);border-radius:12px;padding:15px 18px;transition:.22s;
+}
+.sf-faq details[open]{border-color:var(--sf-amber);box-shadow:0 8px 20px rgba(255,183,3,.12);}
+.sf-faq summary{
+  cursor:pointer;font-size:14.5px;font-weight:700;color:var(--sf-navy);list-style:none;
+  display:flex;justify-content:space-between;gap:12px;align-items:center;
+}
+.sf-faq summary::-webkit-details-marker{display:none;}
+.sf-faq summary::after{content:"+";color:#a87400;font-size:20px;font-weight:400;transition:.22s;}
+.sf-faq details[open] summary::after{content:"−";}
+.sf-faq p{font-size:13.5px;color:var(--sf-muted);margin-top:10px;line-height:1.8;}
+/* 联系 */
+.sf-contact{
+  display:grid;grid-template-columns:1.2fr 1fr;gap:30px;align-items:center;
+  background:linear-gradient(135deg,#13223f,#26406f);border-radius:22px;padding:44px;color:#eef3fc;
+}
+.sf-contact h2{font-size:26px;margin-bottom:12px;font-weight:800;}
+.sf-contact p{font-size:14.5px;color:#b9c7de;line-height:1.9;margin-bottom:18px;}
+.sf-contact-list{display:flex;flex-direction:column;gap:9px;font-size:13.5px;color:#c8d4e8;}
+.sf-contact-list b{color:var(--sf-amber-soft);font-weight:600;}
+.sf-contact-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;}
+.sf-contact-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:22px;}
+.sf-contact-card h3{font-size:15px;margin-bottom:8px;color:var(--sf-amber-soft);}
+.sf-contact-card p{font-size:13px;color:#b9c7de;margin-bottom:0;}
+/* 页脚 */
+.sf-footer{background:#0d1930;color:#93a2bc;padding:50px 0 26px;font-size:13.5px;}
+.sf-footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:34px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.09);}
+.sf-footer h4{font-size:14.5px;color:#e6edf9;margin-bottom:12px;font-weight:700;}
+.sf-footer p{line-height:1.9;color:#8b9bb6;}
+.sf-footer ul li{margin-bottom:8px;}
+.sf-footer ul a{transition:.2s;}
+.sf-footer ul a:hover{color:var(--sf-amber);}
+.sf-footer-bottom{
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding-top:20px;font-size:12.5px;color:#6f7f9b;
+}
+.sf-footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:12px;color:#e6edf9;font-weight:800;font-size:16px;}
+/* 回到顶部 */
+.sf-top{
+  position:fixed;right:22px;bottom:26px;width:46px;height:46px;border-radius:50%;
+  background:var(--sf-navy);color:#fff;font-size:18px;display:grid;place-items:center;
+  box-shadow:0 10px 24px rgba(18,32,60,.3);opacity:0;pointer-events:none;transition:.28s;z-index:120;
+}
+.sf-top.is-show{opacity:1;pointer-events:auto;}
+.sf-top:hover{background:#25406f;transform:translateY(-3px);}
+/* Toast 与弹窗 */
+.sf-toast{
+  position:fixed;left:50%;bottom:40px;transform:translate(-50%,20px);background:rgba(18,32,60,.95);
+  color:#fff;font-size:13.5px;padding:10px 22px;border-radius:999px;opacity:0;pointer-events:none;
+  transition:.3s;z-index:200;box-shadow:0 10px 26px rgba(0,0,0,.28);
+}
+.sf-toast.is-show{opacity:1;transform:translate(-50%,0);}
+.sf-modal{
+  position:fixed;inset:0;background:rgba(10,18,36,.62);display:grid;place-items:center;z-index:210;
+  opacity:0;pointer-events:none;transition:.26s;padding:20px;
+}
+.sf-modal.is-show{opacity:1;pointer-events:auto;}
+.sf-modal-panel{
+  background:#fff;border-radius:18px;max-width:470px;width:100%;padding:26px;position:relative;
+  transform:translateY(14px);transition:.26s;box-shadow:0 30px 60px rgba(0,0,0,.32);
+}
+.sf-modal.is-show .sf-modal-panel{transform:translateY(0);}
+.sf-modal-panel h3{font-size:18px;color:var(--sf-navy);margin-bottom:10px;font-weight:800;}
+.sf-modal-panel p{font-size:13.5px;color:var(--sf-muted);line-height:1.85;margin-bottom:16px;}
+.sf-modal-close{
+  position:absolute;right:14px;top:12px;font-size:20px;color:#94a0b4;width:30px;height:30px;border-radius:8px;
+}
+.sf-modal-close:hover{background:#f0f4fb;color:var(--sf-navy);}
+.sf-form-row{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;}
+.sf-form-row label{font-size:12.5px;color:#5d6878;font-weight:600;}
+.sf-form-row input,.sf-form-row textarea,.sf-form-row select{
+  border:1px solid var(--sf-line);border-radius:9px;padding:9px 12px;font-size:13.5px;
+  outline:none;font-family:inherit;color:var(--sf-text);background:#fafbfe;
+}
+.sf-form-row input:focus,.sf-form-row textarea:focus,.sf-form-row select:focus{border-color:var(--sf-amber);background:#fff;}
+.sf-form-submit{
+  width:100%;background:var(--sf-navy);color:#fff;padding:11px;border-radius:10px;font-weight:700;font-size:14px;transition:.2s;
+}
+.sf-form-submit:hover{background:#25406f;}
+.sf-share-row{display:flex;gap:10px;flex-wrap:wrap;}
+.sf-share-row button{
+  flex:1;background:#f0f4fb;border-radius:10px;padding:11px;font-size:13.5px;color:var(--sf-navy);font-weight:600;transition:.2s;
+}
+.sf-share-row button:hover{background:var(--sf-amber);color:#241a00;}
+/* 响应式 */
+@media (max-width:1024px){
+  .sf-hero-grid{grid-template-columns:1fr;gap:34px;padding:44px 0 50px;}
+  .sf-hero h1{font-size:33px;}
+  .sf-focus-grid{grid-template-columns:1fr;}
+  .sf-stream-grid,.sf-author-grid,.sf-review-grid,.sf-tools-grid{grid-template-columns:repeat(2,1fr);}
+  .sf-topic-grid{grid-template-columns:repeat(2,1fr);}
+  .sf-wall{grid-template-columns:repeat(3,1fr);}
+  .sf-about-cols{grid-template-columns:1fr;}
+  .sf-contact{grid-template-columns:1fr;padding:32px;}
+  .sf-footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:760px){
+  :root{--sf-sticky:auto;}
+  .sf-nav{
+    display:none;order:4;width:100%;flex-direction:column;background:#fff;border-top:1px solid var(--sf-line);
+    padding-top:8px;
+  }
+  .sf-nav.is-open{display:flex;}
+  .sf-burger{display:block;margin-left:auto;}
+  .sf-search{order:5;width:100%;min-width:0;margin-bottom:8px;}
+  .sf-header-inner{padding:12px 0;}
+  .sf-hero h1{font-size:27px;}
+  .sf-hero-desc,.sf-hero-lead{font-size:13.5px;}
+  .sf-stream-grid,.sf-author-grid,.sf-review-grid,.sf-tools-grid,.sf-topic-grid{grid-template-columns:1fr;}
+  .sf-wall{grid-template-columns:repeat(2,1fr);}
+  .sf-wall figure:nth-child(1),.sf-wall figure:nth-child(6){grid-column:span 2;}
+  .sf-focus-side .sf-video-card{flex-direction:column;}
+  .sf-focus-side .sf-thumb{width:100%;}
+  .sf-focus-side .sf-thumb img{aspect-ratio:16/9;height:auto;}
+  .sf-about-box{padding:26px 20px;}
+  .sf-section{padding:44px 0;}
+  .sf-sec-head h2{font-size:22px;}
+  .sf-news-item{grid-template-columns:1fr;gap:5px;}
+  .sf-news-item em{justify-self:start;}
+  .sf-footer-grid{grid-template-columns:1fr;}
+  .sf-stats{gap:24px;}
+  .sf-contact{padding:26px 20px;}
+  .sf-contact h2{font-size:21px;}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<div class="sf-sticky-bar">
+  <div class="sf-notice">
+    <div class="sf-wrap sf-notice-inner">
+      <span class="sf-notice-tag">官方公告</span>
+      <div class="sf-notice-text" id="sfNoticeText">
+        11月19日更新：<b>纪录片专题《山河纪事》第6集上线</b>· 年度创作者扶持计划第二轮报名开启 · 高清影像素材库新增1200条参考片段
+      </div>
+      <div class="sf-notice-dots" aria-hidden="true">
+        <i class="is-on"></i><i></i><i></i>
+      </div>
+    </div>
+  </div>
+  <header class="sf-header">
+    <div class="sf-wrap sf-header-inner">
+      <a class="sf-logo" href="#sfHome">
+        <span class="sf-logo-mark" aria-hidden="true"></span>
+        <span>360影视大全<small>OFFICIAL VIDEO</small></span>
+      </a>
+      <nav class="sf-nav" id="sfNav">
+        <a href="#sfHome" class="is-active">首页</a>
+        <a href="#sfFocus">焦点内容</a>
+        <a href="#sfTopics">专题企划</a>
+        <a href="#sfAuthors">创作者</a>
+        <a href="#sfAbout">品牌解析</a>
+        <a href="#sfNews">企业动态</a>
+        <a href="#sfFaq">帮助中心</a>
+      </nav>
+      <div class="sf-search">
+        <input type="search" id="sfSearchInput" placeholder="搜索影片 / 专题 / 创作者" aria-label="站内搜索">
+        <button type="button" id="sfSearchBtn">搜索</button>
+      </div>
+      <div class="sf-search-tip" id="sfSearchTip"></div>
+      <button class="sf-burger" id="sfBurger" type="button" aria-label="展开导航">☰</button>
+    </div>
+  </header>
+</div>
+
+<main>
+  <!-- 首屏 -->
+  <section class="sf-hero" id="sfHome">
+    <div class="sf-wrap sf-hero-grid">
+      <div>
+        <span class="sf-hero-badge">360影视大全 官方网站 · 品牌门户</span>
+        <h1>360影视大全 <em>影视内容聚合平台</em></h1>
+        <p class="sf-hero-lead">官方出品 · 高清正版 · 多元精品内容汇聚</p>
+        <p class="sf-hero-desc">
+          作为一家持续运营的影视内容企业，360影视大全官方网站面向家庭用户、影视爱好者与内容创作者，
+          汇聚电影、剧集、纪录片、动漫与原创影像作品，以匠心筛选与专业编目，让每一次打开都更接近值得看的好内容。
+        </p>
+        <div class="sf-hero-actions">
+          <a class="sf-btn sf-btn-primary" href="#sfFocus">进入焦点内容</a>
+          <a class="sf-btn sf-btn-ghost" href="#sfAbout">了解品牌故事</a>
+          <button class="sf-btn sf-btn-ghost" type="button" data-sf-open="submit">创作者投稿入口</button>
+        </div>
+        <div class="sf-stats" id="sfStats">
+          <div class="sf-stat"><strong data-sf-count="12600">0</strong><span>收录精品内容（部）</span></div>
+          <div class="sf-stat"><strong data-sf-count="820">0</strong><span>签约与入驻创作者</span></div>
+          <div class="sf-stat"><strong data-sf-count="3100">0</strong><span>累计深度专题（期）</span></div>
+        </div>
+      </div>
+      <div class="sf-hero-visual">
+        <div class="sf-hero-main">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231b2d52'/%3E%3Cstop offset='0.55' stop-color='%232b4677'/%3E%3Cstop offset='1' stop-color='%23121f3a'/%3E%3C/linearGradient%3E%3ClinearGradient id='g2' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ffb703'/%3E%3Cstop offset='1' stop-color='%23ff8a00'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1280' height='720' fill='url(%23g1)'/%3E%3Ccircle cx='1010' cy='180' r='220' fill='%23ffb703' opacity='0.10'/%3E%3Ccircle cx='260' cy='600' r='180' fill='%234d7bd6' opacity='0.14'/%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.16' stroke-width='2'%3E%3Crect x='90' y='110' width='330' height='190' rx='14'/%3E%3Crect x='470' y='150' width='240' height='140' rx='12'/%3E%3Crect x='760' y='90' width='390' height='230' rx='16'/%3E%3C/g%3E%3Cg fill='%23ffb703'%3E%3Ccircle cx='640' cy='430' r='54' opacity='0.92'/%3E%3C/g%3E%3Cpath d='M626 404 L672 430 L626 456 Z' fill='%23121f3a'/%3E%3Cg fill='%23ffffff' fill-opacity='0.20'%3E%3Crect x='760' y='380' width='390' height='14' rx='7'/%3E%3Crect x='760' y='410' width='300' height='12' rx='6'/%3E%3Crect x='760' y='438' width='340' height='12' rx='6'/%3E%3Crect x='90' y='360' width='230' height='13' rx='6'/%3E%3Crect x='90' y='390' width='180' height='11' rx='5'/%3E%3C/g%3E%3Cg transform='translate(900 520)'%3E%3Crect width='240' height='120' rx='12' fill='%23ffffff' fill-opacity='0.06' stroke='%23ffffff' stroke-opacity='0.18'/%3E%3Crect x='18' y='24' width='120' height='10' rx='5' fill='url(%23g2)'/%3E%3Crect x='18' y='48' width='170' height='8' rx='4' fill='%23ffffff' fill-opacity='0.25'/%3E%3Crect x='18' y='68' width='90' height='8' rx='4' fill='%23ffffff' fill-opacity='0.18'/%3E%3C/g%3E%3C/svg%3E" alt="360影视大全官方品牌主视觉：深蓝影像界面与播放标识">
+        </div>
+        <div class="sf-hero-chips">
+          <span>电影剧场</span><span>高分剧集</span><span>人文纪录片</span><span>原创短片</span><span>影像素材库</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 焦点内容 -->
+  <section class="sf-section sf-section--alt" id="sfFocus">
+    <div class="sf-wrap">
+      <div class="sf-sec-head">
+        <div class="sf-eyebrow">Focus Selection</div>
+        <h2>焦点内容 · 本期<em>官方精选</em></h2>
+        <p>由内容编审团队每周评审，从高清正版片库与原创投稿中挑选兼具口碑与观看价值的精品，覆盖影像叙事、行业观察与实用技巧三类方向。</p>
+      </div>
+      <div class="sf-focus-grid">
+        <article class="sf-video-card">
+          <div class="sf-thumb">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%230d1c33'/%3E%3Cstop offset='1' stop-color='%23244a70'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' y1='1' x2='0' y2='0'%3E%3Cstop offset='0' stop-color='%23ffb703' stop-opacity='0.55'/%3E%3Cstop offset='1' stop-color='%23ffb703' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1280' height='720' fill='url(%23a)'/%3E%3Cpath d='M0 520 Q320 380 640 480 T1280 430 L1280 720 L0 720 Z' fill='%231a2c48'/%3E%3Cpath d='M0 600 Q360 470 720 560 T1280 520 L1280 720 L0 720 Z' fill='%23122647'/%3E%3Ccircle cx='980' cy='200' r='110' fill='%23ffe3a3' opacity='0.85'/%3E%3Crect y='480' width='1280' height='240' fill='url(%23b)'/%3E%3Cg fill='%23ffffff' fill-opacity='0.22'%3E%3Crect x='80' y='560' width='380' height='16' rx='8'/%3E%3Crect x='80' y='596' width='240' height='12' rx='6'/%3E%3C/g%3E%3Cg stroke='%23ffffff' stroke-opacity='0.25' stroke-width='2' fill='none'%3E%3Cpath d='M180 430 L260 380 L340 430 L300 500 L220 500 Z'/%3E%3C/g%3E%3C/svg%3E" alt="纪录片《山河纪事》第六集山川航拍主视觉">
+            <span class="sf-thumb-tag">官方首发</span>
+            <span class="sf-thumb-play" aria-hidden="true"><i></i></span>
+          </div>
+          <div class="sf-card-body">
+            <h3>《山河纪事》第六集：一条河的四季与三个村庄</h3>
+            <p class="sf-card-desc">摄制组沿江而下七百里，在汛期与枯水期各记录一次，用四年时间讲述水与人如何相互塑造。全片4K高清拍摄，配乐由在地民谣采样改编。</p>
+            <div class="sf-tags"><span>人文纪录片</span><span>高清影像</span><span>在地文化</span></div>
+            <div class="sf-card-meta">
+              <span class="sf-avatar" style="background:#2b4677">纪</span>
+              <span>纪实影像组</span><span>2026-11-19</span><span>播放 42.6万</span>
+            </div>
+            <div class="sf-card-actions">
+              <button class="sf-act" type="button" data-sf-like>♡ <span>1824</span></button>
+              <button class="sf-act" type="button" data-sf-save>☆ 收藏</button>
+              <button class="sf-act" type="button" data-sf-comment="《山河纪事》第六集">💬 评论</button>
+              <button class="sf-act" type="button" data-sf-share="《山河纪事》第六集">↗ 分享</button>
+            </div>
+          </div>
+        </article>
+        <div class="sf-focus-side">
+          <article class="sf-video-card">
+            <div class="sf-thumb">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Cdefs%3E%3ClinearGradient id='c' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23c2410c'/%3E%3Cstop offset='1' stop-color='%23f59e0b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='360' fill='url(%23c)'/%3E%3Ccircle cx='520' cy='90' r='90' fill='%23fff7ed' opacity='0.38'/%3E%3Crect x='60' y='200' width='280' height='14' rx='7' fill='%23ffffff' fill-opacity='0.5'/%3E%3Crect x='60' y='232' width='190' height='10' rx='5' fill='%23ffffff' fill-opacity='0.34'/%3E%3Cpath d='M300 80 L380 120 L380 40 Z' fill='%23fff7ed' opacity='0.5'/%3E%3C/svg%3E" alt="美食影像《一碗汤的十二小时》灶台暖色封面">
+              <span class="sf-thumb-tag">口碑推荐</span>
+              <span class="sf-thumb-play" aria-hidden="true"><i></i></span>
+            </div>
+            <div class="sf-card-body">
+              <h3>《一碗汤的十二小时》：从凌晨四点的菜市场开始</h3>
+              <p class="sf-card-desc">记录一道家常汤品的完整时间线，厨师与摊主双线并行。</p>
+              <div class="sf-card-meta"><span>美食烹饪</span><span>播放 18.2万</span></div>
+              <div class="sf-card-actions">
+                <button class="sf-act" type="button" data-sf-like>♡ <span>906</span></button>
+                <button class="sf-act" type="button" data-sf-save>☆ 收藏</button>
+              </div>
+            </div>
+          </article>
+          <article class="sf-video-card">
+            <div class="sf-thumb">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Cdefs%3E%3ClinearGradient id='d' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%230f766e'/%3E%3Cstop offset='1' stop-color='%23134e4a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='360' fill='url(%23d)'/%3E%3Cg stroke='%2334d399' stroke-opacity='0.4' fill='none' stroke-width='3'%3E%3Cpath d='M0 260 L120 200 L240 260 L360 190 L480 250 L640 180'/%3E%3Cpath d='M0 300 L140 250 L280 310 L420 240 L560 300 L640 260'/%3E%3C/g%3E%3Ccircle cx='480' cy='100' r='56' fill='%2334d399' opacity='0.28'/%3E%3Crect x='50' y='290' width='220' height='12' rx='6' fill='%23ffffff' fill-opacity='0.42'/%3E%3C/svg%3E" alt="科技前沿《智能分镜如何改变短视频剪辑》冷绿数据封面">
+              <span class="sf-thumb-tag">行业观察</span>
+              <span class="sf-thumb-play" aria-hidden="true"><i></i></span>
+            </div>
+            <div class="sf-card-body">
+              <h3>智能分镜如何改变短视频剪辑：三位剪辑师的对谈</h3>
+              <p class="sf-card-desc">从工具效率到创作主权，聊一聊技术介入后的真实体验。</p>
+              <div class="sf-card-meta"><span>科技前沿</span><span>播放 15.7万</span></div>
+              <div class="sf-card-actions">
+                <button class="sf-act" type="button" data-sf-like>♡ <span>742</span></button>
+                <button class="sf-act" type="button" data-sf-save>☆ 收藏</button>
+              </div>
+            </div>
+          </article>
+          <article class="sf-video-card">
+            <div class="sf-thumb">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Cdefs%3E%3ClinearGradient id='e' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23312e81'/%3E%3Cstop offset='1' stop-color='%236d28d9'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='360' fill='url(%23e)'/%3E%3Cg fill='%23c4b5fd' fill-opacity='0.45'%3E%3Ccircle cx='120' cy='120' r='40'/%3E%3Ccircle cx='220' cy='210' r='24'/%3E%3Ccircle cx='520' cy='140' r='58'/%3E%3C/g%3E%3Crect x='60' y='270' width='300' height='14' rx='7' fill='%23ffffff' fill-opacity='0.5'/%3E%3Crect x='60' y='300' width='180' height='10' rx='5' fill='%23ffffff' fill-opacity='0.3'/%3E%3C/svg%3E" alt="人物访谈《镜头背后的十年》紫色柔光封面">
+              <span class="sf-thumb-tag">人物访谈</span>
+              <span class="sf-thumb-play" aria-hidden="true"><i></i></span>
+            </div>
+            <div class="sf-card-body">
+              <h3>镜头背后的十年：一位跟焦员的工作日常</h3>
+              <p class="sf-card-desc">片场里最少被看见的岗位，承担着画面最关键的清晰度。</p>
+              <div class="sf-card-meta"><span>创作幕后</span><span>播放 11.3万</span></div>
+              <div class="sf-card-actions">
+                <button class="sf-act" type="button" data-sf-like>♡ <span>588</span></button>
+                <button class="sf-act" type="button" data-sf-save>☆ 收藏</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 热门视频流 -->
+  <section class="sf-section" id="sfStream">
+    <div class="sf-wrap">
+      <div class="sf-sec-head">
+        <div class="sf-eyebrow">Trending Stream</div>
+        <h2>热门影像 · <em>持续更新的内容生态</em></h2>
+        <p>平台每日更新精选片单与深度解析，涵盖教程干货、深度测评、治愈影像等热门题材，支持标签筛选与收藏管理。</p>
+      </div>
+      <div class="sf-stream-grid">
+        <article class="sf-video-card">
+          <div class="sf-thumb">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Cdefs%3E%3ClinearGradient id='f' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23b45309'/%3E%3Cstop offset='1' stop-color='%23fbbf24'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='360' fill='url(%23f)'/%3E%3Cg stroke='%23fff7ed' stroke-opacity='0.5' stroke-width='4' fill='none'%3E%3Crect x='80' y='80' width='150' height='110' rx='10'/%3E%3Crect x='260' y='120' width='120' height='90' rx='8'/%3E%3Crect x='410' y='70' width='160' height='130' rx='12'/%3E%3C/g%3E%3Crect x='60' y='280' width='260' height='14' rx='7' fill='%23ffffff' fill-opacity='0.55'/%3E%3C/svg%3E" alt="家居收纳教程《三十平米里的一百个抽屉》暖黄封面">
+            <span class="sf-thumb-tag">教程</span>
+            <span class="sf-thumb-play" aria-hidden="true"><i></i></span>
+          </div>
+          <div class="sf-card-body">
+            <h3>三十平米里的一百个抽屉：小户型收纳全流程</h3>
+            <p class="sf-card-desc">从测量到定制，一位屋主用三个月时间重构自己的储物系统，附尺寸清单与踩坑记录。</p>
+            <div class="sf-tags"><span>家居收纳</span><span>实用技巧</span></div>
+            <div class="sf-card-meta"><span class="sf-avatar" style="background:#b45309">木</span><span>木小满</span><span>播放 26.4万</span></div>
+            <div class="sf-card-actions">
+              <button class="sf-act" type="button" data-sf-like>♡ <span>1312</span></button>
+              <button class="sf-act" type="button" data-sf-save>☆ 收藏</button>
+              <button class="sf-act" type="button" data-sf-share="三十平米里的一百个抽屉">↗ 分享</button>
+            </div>
+          </div>
+        </article>
+        <article class="sf-video-card">
+          <div class="sf-thumb">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%230e7490'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='360' fill='url(%23g)'/%3E%3Cg fill='%23ecfeff' fill-opacity='0.4'%3E%3Crect x='70' y='210' width='40' height='100' rx='6'/%3E%3Crect x='130' y='160' width='40' height='150' rx='6'/%3E%3Crect x='190' y='90' width='40' height='220' rx='6'/%3E%3C/g%3E%3Crect x='300' y='80' width='260' height='16' rx='8' fill='%23ffffff' fill-opacity='0.55'/%3E%3Crect x='300' y='118' width='190' height='12' rx='6' fill='%23ffffff' fill-opacity='0.36'/%3E%3C/svg%3E" alt="深度测评《五款主流拍摄手机夜景横评》青蓝数据封面">
+            <span class="sf-thumb-tag">测评</span>
+            <span class="sf-thumb-play" aria-hidden="true"><i></i></span>
+          </div>
+          <div class="sf-card-body">
+            <h3>五款主流拍摄手机夜景横评：样张与参数全公开</h3>
+            <p class="sf-card-desc">同一机位、同一时间、同一构图，用可复现的方法比较噪点、动态范围与色彩倾向。</p>
+            <div class="sf-tags"><span>深度测评</span><span>科技前沿</span></div>
+            <div class="sf-card-meta"><span class="sf-avatar" style="background:#0e7490">测</span><span>影像实验室</span><span>播放 33.8万</span></div>
+            <div class="sf-card-actions">
+              <button class="sf-act" type="button" data-sf-like>♡ <span>2046</span></button>
+              <button class="sf-act" type="button" data-sf-save>☆ 收藏</button>
+              <button class="sf-act" type="button" data-sf-share="五款主流拍摄手机夜景横评">↗ 分享</button>
+            </div>
+          </div>
+        </article>
+        <article class="sf-video-card">
+          <div class="sf-thumb">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Cdefs%3E%3ClinearGradient id='h' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234c1d95'/%3E%3Cstop offset='1' stop-color='%23be185d'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='360' fill='url(%23h)'/%3E%3Ccircle cx='160' cy='180' r='80' fill='%23fbcfe8' opacity='0.35'/%3E%3Ccircle cx='470' cy='140' r='110' fill='%23fbcfe8' opacity='0.2'/%3E%3Cpath d='M300 360 Q320 220 420 200 Q360 260 380 360 Z' fill='%23fbcfe8' opacity='0.28'/%3E%3Crect x='60' y='290' width='200' height='12' rx='6' fill='%23ffffff' fill-opacity='0.5'/%3E%3C/svg%3E" alt="治愈影像《凌晨两点的便利店灯光》紫粉夜色封面">
+            <span class="sf-thumb-tag">治愈</span>
+            <span class="sf-thumb-play" aria-hidden="true"><i></i></span>
+          </div>
+          <div class="sf-card-body">
+            <h3>凌晨两点的便利店灯光：城市夜归人影像手记</h3>
+            <p class="sf-card-desc">连续拍摄二十个夜晚，记录同一条街道上的疲惫、等待与微小善意。</p>
+            <div class="sf-tags"><span>治愈影像</span><span>城市探索</span></div>
+            <div class="sf-card-meta"><span class="sf-avatar" style="background:#4c1d95">夜</span><span>夜行摄手</span><span>播放 21.5万</span></div>
+            <div class="sf-card-actions">
+              <button class="sf-act" type="button" data-sf-like>♡ <span>1673</span></button>
+              <button class="sf-act" type="button" data-sf-save>☆ 收藏</button>
+              <button class="sf-act" type="button" data-sf-share="凌晨两点的便利店灯光">↗ 分享</button>
+            </div>
+          </div>
+        </article>
+        <article class="sf-video-card">
+          <div class="sf-thumb">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Cdefs%3E%3ClinearGradient id='i' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2314532d'/%3E%3Cstop offset='1' stop-color='%2365a30d'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='360' fill='url(%23i)'/%3E%3Cg fill='%23ecfccb' fill-opacity='0.4'%3E%3Cpath d='M0 300 Q160 200 320 280 T640 240 L640 360 L0 360 Z'/%3E%3Cpath d='M0 330 Q180 250 360 320 T640 300 L640 360 L0 360 Z' fill-opacity='0.24'/%3E%3C/g%3E%3Ccircle cx='500' cy='100' r='62' fill='%23d9f99d' opacity='0.5'/%3E%3Crect x='60' y='60' width='190' height='12' rx='6' fill='%23ffffff' fill-opacity='0.5'/%3E%3C/svg%3E" alt="户外活动《山脊线上的四十八小时》自然绿封面">
+            <span class="sf-thumb-tag">户外</span>
+            <span class="sf-thumb-play" aria-hidden="true"><i></i></span>
+          </div>
+          <div class="sf-card-body">
+            <h3>山脊线上的四十八小时：轻量化徒步装备实测</h3>
+            <p class="sf-card-desc">负重七公斤完成一次两日线路，逐项记录保暖、补给与体力分配的得失。</p>
+            <div class="sf-tags"><span>户外活动</span><span>经验分享</span></div>
+            <div class="sf-card-meta"><span class="sf-avatar" style="background:#14532d">山</span><span>山野笔记</span><span>播放 14.9万</span></div>
+            <div class="sf-card-actions">
+              <button class="sf-act" type="button" data-sf-like>♡ <span>865</span></button>
+              <button class="sf-act" type="button" data-sf-save>☆ 收藏</button>
+              <button class="sf-act" type="button" data-sf-share="山脊线上的四十八小时">↗ 分享</button>
+            </div>
+          </div>
+        </article>
+        <article class="sf-video-card">
+          <div class="sf-thumb">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Cdefs%3E%3ClinearGradient id='j' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237c2d12'/%3E%3Cstop offset='1' stop-color='%23ea580c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='360' fill='url(%23j)'/%3E%3Cg stroke='%23ffedd5' stroke-opacity='0.45' stroke-width='3' fill='none'%3E%3Ccircle cx='320' cy='180' r='90'/%3E%3Ccircle cx='320' cy='180' r='130'/%3E%3C/g%3E%3Cpath d='M290 150 L365 180 L290 210 Z' fill='%23ffedd5' opacity='0.8'/%3E%3Crect x='60' y='300' width='240' height='12' rx='6' fill='%23ffffff' fill-opacity='0.5'/%3E%3C/svg%3E" alt="音乐现场《老剧场里的不插电之夜》暖橙封面">
+            <span class="sf-thumb-tag">音乐</span>
+            <span class="sf-thumb-play" aria-hidden="true"><i></i></span>
+          </div>
+          <div class="sf-card-body">
+            <h3>老剧场里的不插电之夜：六组音乐人的现场实录</h3>
+            <p class="sf-card-desc">没有返听、没有修音，只有木吉他与呼吸声，整场录制保留真实的空间混响。</p>
+            <div class="sf-tags"><span>音乐现场</span><span>创作幕后</span></div>
+            <div class="sf-card-meta"><span class="sf-avatar" style="background:#7c2d12">声</span><span>现场声场</span><span>播放 19.6万</span></div>
+            <div class="sf-card-actions">
+              <button class="sf-act" type="button" data-sf-like>♡ <span>1129</span></button>
+              <button class="sf-act" type="button" data-sf-save>☆ 收藏</button>
+              <button class="sf-act" type="button" data-sf-share="老剧场里的不插电之夜">↗ 分享</button>
+            </div>
+          </div>
+        </article>
+        <article class="sf-video-card">
+          <div class="sf-thumb">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Cdefs%3E%3ClinearGradient id='k' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231e3a8a'/%3E%3Cstop offset='1' stop-color='%233b82f6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='360' fill='url(%23k)'/%3E%3Cg stroke='%23dbeafe' stroke-opacity='0.38' stroke-width='3' fill='none'%3E%3Cpath d='M0 120 L160 120 L200 200 L360 200 L400 280 L640 280'/%3E%3Cpath d='M0 200 L120 200 L160 140 L320 140 L380 220 L640 220'/%3E%3C/g%3E%3Crect x='60' y='60' width='180' height='12' rx='6' fill='%23ffffff' fill-opacity='0.55'/%3E%3Crect x='60' y='300' width='320' height='12' rx='6' fill='%23ffffff' fill-opacity='0.3'/%3E%3C/svg%3E" alt="知识科普《一条时间线看懂通信技术六十年》蓝色封面">
+            <span class="sf-thumb-tag">科普</span>
+            <span class="sf-thumb-play" aria-hidden="true"><i></i></span>
+          </div>
+          <div class="sf-card-body">
+            <h3>一条时间线看懂通信技术六十年：从铜线到光纤</h3>
+            <p class="sf-card-desc">用可视化方式梳理关键技术节点，配合实物档案与工程师口述。</p>
+            <div class="sf-tags"><span>知识科普</span><span>行业观察</span></div>
+            <div class="sf-card-meta"><span class="sf-avatar" style="background:#1e3a8a">知</span><span>图解工坊</span><span>播放 12.7万</span></div>
+            <div class="sf-card-actions">
+              <button class="sf-act" type="button" data-sf-like>♡ <span>704</span></button>
+              <button class="sf-act" type="button" data-sf-save>☆ 收藏</button>
+              <button class="sf-act" type="button" data-sf-share="一条时间线看懂通信技术六十年">↗ 分享</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 专题企划 -->
+  <section class="sf-section sf-section--alt" id="sfTopics">
+    <div class="sf-wrap">
+      <div class="sf-sec-head">
+        <div class="sf-eyebrow">Special Projects</div>
+        <h2>专题企划 · <em>官方发布的深度内容</em></h2>
+        <p>专题由主编团队立项，联合创作者与行业顾问共同完成，按季度持续推进，形成可回看、可检索的内容资产。</p>
+      </div>
+      <div class="sf-topic-grid">
+        <a class="sf-topic" href="#sfFocus">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 620'%3E%3Cdefs%3E%3ClinearGradient id='t1' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%230f2a4a'/%3E%3Cstop offset='1' stop-color='%23081830'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='480' height='620' fill='url(%23t1)'/%3E%3Ccircle cx='360' cy='130' r='90' fill='%23ffb703' opacity='0.28'/%3E%3Cpath d='M0 420 Q120 340 240 400 T480 360 L480 620 L0 620 Z' fill='%231c3a5e'/%3E%3Cpath d='M0 500 Q140 430 280 490 T480 460 L480 620 L0 620 Z' fill='%23132c4c'/%3E%3C/svg%3E" alt="专题《山河纪事》山川长卷竖版封面">
+          <div class="sf-topic-shade"></div>
+          <div class="sf-topic-body">
+            <span>更新中</span>
+            <h3>山河纪事</h3>
+            <p>六集人文纪录片，跟踪水系的季节性变化与沿岸生活方式。</p>
+            <div class="sf-topic-state">已更新 6 / 8 集</div>
+          </div>
+        </a>
+        <a class="sf-topic" href="#sfFocus">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 620'%3E%3Cdefs%3E%3ClinearGradient id='t2' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23b45309'/%3E%3Cstop offset='1' stop-color='%23451a03'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='480' height='620' fill='url(%23t2)'/%3E%3Cg fill='%23fed7aa' fill-opacity='0.24'%3E%3Ccircle cx='140' cy='180' r='70'/%3E%3Ccircle cx='340' cy='300' r='100'/%3E%3Ccircle cx='200' cy='460' r='56'/%3E%3C/g%3E%3C/svg%3E" alt="专题《一日三餐》厨房烟火竖版封面">
+          <div class="sf-topic-shade"></div>
+          <div class="sf-topic-body">
+            <span>已完结</span>
+            <h3>一日三餐</h3>
+            <p>十二位普通人的厨房，十二段关于家与迁徙的味觉记忆。</p>
+            <div class="sf-topic-state">全 12 集 · 可完整回看</div>
+          </div>
+        </a>
+        <a class="sf-topic" href="#sfFocus">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 620'%3E%3Cdefs%3E%3ClinearGradient id='t3' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23134e4a'/%3E%3Cstop offset='1' stop-color='%23042222'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='480' height='620' fill='url(%23t3)'/%3E%3Cg stroke='%235eead4' stroke-opacity='0.3' stroke-width='3' fill='none'%3E%3Crect x='80' y='120' width='320' height='200' rx='12'/%3E%3Crect x='80' y='360' width='200' height='140' rx='10'/%3E%3C/g%3E%3C/svg%3E" alt="专题《幕后一百人》片场工种竖版封面">
+          <div class="sf-topic-shade"></div>
+          <div class="sf-topic-body">
+            <span>筹备中</span>
+            <h3>幕后一百人</h3>
+            <p>把镜头对准片场里不被署名的岗位，记录工业化的另一面。</p>
+            <div class="sf-topic-state">预计 12 月上线首集</div>
+          </div>
+        </a>
+        <a class="sf-topic" href="#sfFocus">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 620'%3E%3Cdefs%3E%3ClinearGradient id='t4' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%234c1d95'/%3E%3Cstop offset='1' stop-color='%231e1b4b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='480' height='620' fill='url(%23t4)'/%3E%3Cg fill='%23ddd6fe' fill-opacity='0.3'%3E%3Ccircle cx='240' cy='230' r='120'/%3E%3C/g%3E%3Cpath d='M140 360 L340 360 L300 500 L180 500 Z' fill='%23ddd6fe' opacity='0.18'/%3E%3C/svg%3E" alt="专题《夜行地图》城市夜色竖版封面">
+          <div class="sf-topic-shade"></div>
+          <div class="sf-topic-body">
+            <span>投票进行中</span>
+            <h3>夜行地图</h3>
+            <p>面向全站征集夜间影像，由用户投票选出年度城市夜片单。</p>
+            <div class="sf-topic-state">收到投稿 1,284 份</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 创作者矩阵 -->
+  <section class="sf-section" id="sfAuthors">
+    <div class="sf-wrap">
+      <div class="sf-sec-head">
+        <div class="sf-eyebrow">Creators</div>
+        <h2>创作者矩阵 · <em>值得信赖的原创力量</em></h2>
+        <p>平台坚持原创与正版并重，已与八百余位创作者建立长期合作，覆盖纪录片、美食、科技、户外与生活方式等垂直领域。</p>
+      </div>
+      <div class="sf-author-grid">
+        <article class="sf-author">
+          <div class="sf-author-top">
+            <div class="sf-author-avatar" style="background:linear-gradient(135deg,#1e3a8a,#3b82f6)">纪</div>
+            <div><h3>纪实影像组</h3><small>人文纪录片 · 官方签约</small></div>
+          </div>
+          <p>一支六人小队，长期驻扎在县域与乡村，用长周期拍摄记录真实的生活节奏，作品曾入选多个影展展映单元。</p>
+          <div class="sf-author-nums"><span>作品 <b>68</b></span><span>关注 <b>24.1万</b></span></div>
+          <a class="sf-author-more" href="#sfFocus">查看作品 →</a>
+        </article>
+        <article class="sf-author">
+          <div class="sf-author-top">
+            <div class="sf-author-avatar" style="background:linear-gradient(135deg,#b45309,#f59e0b)">木</div>
+            <div><h3>木小满</h3><small>家居收纳 · 实用技巧</small></div>
+          </div>
+          <p>室内设计师出身，专注小空间改造与收纳系统，擅长把复杂的尺寸问题讲得清楚，视频常附带可下载的清单。</p>
+          <div class="sf-author-nums"><span>作品 <b>132</b></span><span>关注 <b>38.6万</b></span></div>
+          <a class="sf-author-more" href="#sfStream">查看作品 →</a>
+        </article>
+        <article class="sf-author">
+          <div class="sf-author-top">
+            <div class="sf-author-avatar" style="background:linear-gradient(135deg,#0e7490,#22d3ee)">测</div>
+            <div><h3>影像实验室</h3><small>深度测评 · 科技前沿</small></div>
+          </div>
+          <p>坚持可复现的测试流程，公开原始素材与参数设置，为影像从业者提供决策参考，在业内积累了稳定口碑。</p>
+          <div class="sf-author-nums"><span>作品 <b>214</b></span><span>关注 <b>52.3万</b></span></div>
+          <a class="sf-author-more" href="#sfStream">查看作品 →</a>
+        </article>
+        <article class="sf-author">
+          <div class="sf-author-top">
+            <div class="sf-author-avatar" style="background:linear-gradient(135deg,#4c1d95,#be185d)">夜</div>
+            <div><h3>夜行摄手</h3><small>治愈影像 · 城市探索</small></div>
+          </div>
+          <p>白天上班，夜里拍摄。擅长在低照度环境下捕捉情绪，用极简的剪辑与现场声构建安静而有力量的叙事。</p>
+          <div class="sf-author-nums"><span>作品 <b>96</b></span><span>关注 <b>19.8万</b></span></div>
+          <a class="sf-author-more" href="#sfStream">查看作品 →</a>
+        </article>
+        <article class="sf-author">
+          <div class="sf-author-top">
+            <div class="sf-author-avatar" style="background:linear-gradient(135deg,#14532d,#65a30d)">山</div>
+            <div><h3>山野笔记</h3><small>户外活动 · 经验分享</small></div>
+          </div>
+          <p>持证户外向导，专注轻量化徒步与安全检查清单，内容偏实用，常把失败的行程也完整呈现给观众。</p>
+          <div class="sf-author-nums"><span>作品 <b>74</b></span><span>关注 <b>16.4万</b></span></div>
+          <a class="sf-author-more" href="#sfStream">查看作品 →</a>
+        </article>
+        <article class="sf-author">
+          <div class="sf-author-top">
+            <div class="sf-author-avatar" style="background:linear-gradient(135deg,#7c2d12,#ea580c)">声</div>
+            <div><h3>现场声场</h3><small>音乐现场 · 创作幕后</small></div>
+          </div>
+          <p>录音师与导演组合，坚持一条过的现场录制，为独立音乐人提供零修饰的舞台记录，也分享录音器材的使用心得。</p>
+          <div class="sf-author-nums"><span>作品 <b>58</b></span><span>关注 <b>13.7万</b></span></div>
+          <a class="sf-author-more" href="#sfStream">查看作品 →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 品牌解析 -->
+  <section class="sf-section sf-about" id="sfAbout">
+    <div class="sf-wrap">
+      <div class="sf-about-box">
+        <div class="sf-eyebrow">Brand Story</div>
+        <h2>关于 360影视大全：一个影视内容聚合平台的定位与解析</h2>
+        <p>360影视大全是一家专注于影视内容聚合与分发的视频品牌，官方网站承载品牌介绍、内容索引、创作者合作与企业动态等完整信息。平台自成立以来，始终围绕一个朴素的问题展开工作：在海量影像内容之中，如何帮助用户更高效地找到真正值得花时间观看的作品。为此，我们建立起从内容采集、编目、审校到专题化运营的完整链路，并持续投入人力维护片库的元数据质量。</p>
+        <div class="sf-about-cols">
+          <div>
+            <h3>内容定位：聚合而不失标准</h3>
+            <p>平台收录电影、剧集、纪录片、动漫、综艺与原创短片等六大类内容，每一部进入片库的作品都需要经过素材清晰度检查、版权信息核验与基础内容审读三道流程。我们不追求数量的堆叠，而是强调结构的完整性：同一主题下尽量提供多角度作品，让用户在了解一个领域时有可参照的坐标系。编目团队会为作品补充年份、地区、主创、题材标签与一句话看点，让检索结果本身具备判断价值。</p>
+            <p>对于原创内容，平台设有专门的评审机制，由编审、导演与普通用户代表共同参与，从叙事完整性、画面质量与表达诚意三个维度给出反馈。我们希望创作者在这里得到的不只是一次曝光，而是可被讨论、可被改进的专业意见。</p>
+            <h3>创作者生态：长期陪伴而非短期流量</h3>
+            <p>平台现有签约与入驻创作者八百余位，覆盖纪录片、美食烹饪、深度测评、户外活动、音乐现场、知识科普等方向。我们为创作者提供素材参考库、字幕与封面工具、选题共创会以及季度性的扶持计划。更重要的是，平台愿意为长周期项目留出位置：一部需要四年完成的纪录片，在这里不会被要求压缩成四分钟。</p>
+          </div>
+          <div>
+            <h3>技术与体验：让检索接近直觉</h3>
+            <p>在内容运营之外，平台持续打磨观看体验。片库支持按题材、年份、地区、时长与主创多重条件组合筛选，专题页提供时间线式的浏览路径，方便用户按自己的节奏深入某一主题。我们也在探索更自然的内容发现方式，例如根据用户已收藏作品的题材分布给出相邻推荐，而不是简单重复热门。</p>
+            <p>在清晰度方面，平台对入库素材统一进行质量评估，尽量提供高清版本的观看选项，并对音频响度做标准化处理，减少不同作品之间的音量跳跃。这些工作不显眼，但直接决定了长时间观看是否舒适。</p>
+            <h3>社会责任与行业观察</h3>
+            <p>作为一家持续运营的内容企业，平台定期发布年度影像观察报告，梳理原创内容的生产趋势与题材变化，为从业者提供参考。我们同时面向高校与社区开放影像工作坊，分享基础的拍摄与剪辑方法，鼓励更多人用影像记录身边真实发生的事。我们相信，一个健康的视频平台不仅要提供内容，也要为内容的生产环境出一份力。</p>
+            <h3>品牌价值观</h3>
+            <p>真实、专业、包容、陪伴，是 360影视大全 反复确认的四个关键词。真实意味着不夸大、不修饰事实；专业意味着尊重流程与标准；包容意味着为不同表达留出空间；陪伴意味着我们愿意和用户、创作者一起走更长的路。这些原则并不宏大，但会体现在每一次内容审核、每一期专题立项、每一条用户反馈的处理之中。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 影像墙 -->
+  <section class="sf-section sf-section--alt" id="sfWall">
+    <div class="sf-wrap">
+      <div class="sf-sec-head">
+        <div class="sf-eyebrow">Gallery</div>
+        <h2>用户作品墙 · <em>来自社区的影像表达</em></h2>
+        <p>以下作品由平台用户上传并经授权展示，涵盖日常记录、在地文化与手作过程，欢迎在专题页参与投票与讨论。</p>
+      </div>
+      <div class="sf-wall">
+        <figure>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Cdefs%3E%3ClinearGradient id='w1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%230f172a'/%3E%3Cstop offset='1' stop-color='%23334155'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='450' fill='url(%23w1)'/%3E%3Ccircle cx='640' cy='110' r='70' fill='%23fbbf24' opacity='0.4'/%3E%3Cpath d='M0 320 L200 260 L400 320 L600 250 L800 310 L800 450 L0 450 Z' fill='%231e293b'/%3E%3C/svg%3E" alt="城市清晨薄雾中的高架桥与车流">
+          <figcaption>城市清晨薄雾，高架桥上的第一班车</figcaption>
+        </figure>
+        <figure>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='w2' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23a16207'/%3E%3Cstop offset='1' stop-color='%23fde68a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23w2)'/%3E%3Cg stroke='%23fffbeb' stroke-opacity='0.5' stroke-width='3' fill='none'%3E%3Ccircle cx='200' cy='150' r='60'/%3E%3Ccircle cx='200' cy='150' r='90'/%3E%3C/g%3E%3C/svg%3E" alt="手作陶艺拉坯过程中的旋转泥团特写">
+          <figcaption>手作日记：一块泥的第四次尝试</figcaption>
+        </figure>
+        <figure>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='w3' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23065f46'/%3E%3Cstop offset='1' stop-color='%2334d399'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23w3)'/%3E%3Cg fill='%23d1fae5' fill-opacity='0.4'%3E%3Cpath d='M0 220 Q100 160 200 220 T400 190 L400 300 L0 300 Z'/%3E%3C/g%3E%3C/svg%3E" alt="清晨稻田边骑行的自行车与露水">
+          <figcaption>乡道骑行：露水打湿裤脚的七公里</figcaption>
+        </figure>
+        <figure>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='w4' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237e22ce'/%3E%3Cstop offset='1' stop-color='%23f9a8d4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23w4)'/%3E%3Ccircle cx='300' cy='80' r='50' fill='%23fdf2f8' opacity='0.5'/%3E%3Crect x='50' y='200' width='180' height='12' rx='6' fill='%23ffffff' fill-opacity='0.5'/%3E%3C/svg%3E" alt="黄昏时分窗台上的绿植与斜射光">
+          <figcaption>窗台的三分钟黄昏光线</figcaption>
+        </figure>
+        <figure>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Cdefs%3E%3ClinearGradient id='w5' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%230c4a6e'/%3E%3Cstop offset='1' stop-color='%237dd3fc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='300' fill='url(%23w5)'/%3E%3Cg stroke='%23e0f2fe' stroke-opacity='0.4' stroke-width='3' fill='none'%3E%3Crect x='60' y='80' width='120' height='140' rx='8'/%3E%3Crect x='220' y='120' width='120' height='100' rx='8'/%3E%3C/g%3E%3C/svg%3E" alt="老巷子里的木质门窗与晾晒衣物">
+          <figcaption>老巷日常：晾衣绳上的风</figcaption>
+        </figure>
+        <figure>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Cdefs%3E%3ClinearGradient id='w6' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23422406'/%3E%3Cstop offset='1' stop-color='%23d97706'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='450' fill='url(%23w6)'/%3E%3Cg fill='%23fef3c7' fill-opacity='0.28'%3E%3Ccircle cx='180' cy='150' r='90'/%3E%3Ccircle cx='620' cy='260' r='120'/%3E%3C/g%3E%3Crect x='80' y='340' width='300' height='14' rx='7' fill='%23ffffff' fill-opacity='0.4'/%3E%3C/svg%3E" alt="夜市摊位灯光下的翻炒与热气">
+          <figcaption>夜市特写：铁锅与热气的十秒</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 评价 -->
+  <section class="sf-section" id="sfReviews">
+    <div class="sf-wrap">
+      <div class="sf-sec-head">
+        <div class="sf-eyebrow">Voices</div>
+        <h2>用户评价 · <em>来自真实使用的反馈</em></h2>
+        <p>我们保留不同角度的声音，包括批评与建议，因为这些反馈构成了平台改版的依据。</p>
+      </div>
+      <div class="sf-review-grid">
+        <div class="sf-review">
+          <div class="sf-review-head"><span class="sf-avatar" style="background:#2b4677">陈</span><b>陈先生</b><small>影迷 · 使用 3 年</small></div>
+          <p>最满意的是专题做得扎实，一部纪录片看完还能顺着时间线找到相关联的片子，不用自己在评论里翻线索。片库的年份和主创信息也标得比较完整。</p>
+          <div class="sf-stars">★★★★★</div>
+        </div>
+        <div class="sf-review">
+          <div class="sf-review-head"><span class="sf-avatar" style="background:#b45309">林</span><b>林小满</b><small>自由摄影师</small></div>
+          <p>素材参考库对我帮助很大，做方案时可以直接引用片段做分镜说明。希望以后能增加按光源条件筛选，那样找参考会更省时间。</p>
+          <div class="sf-stars">★★★★☆</div>
+        </div>
+        <div class="sf-review">
+          <div class="sf-review-head"><span class="sf-avatar" style="background:#0e7490">周</span><b>周工</b><small>影像从业者</small></div>
+          <p>测评类内容的质量在同类平台里算靠前，测试方法写得清楚，样张也保留原始参数，作为工作参考是可信的。偶尔更新节奏慢一些。</p>
+          <div class="sf-stars">★★★★★</div>
+        </div>
+        <div class="sf-review">
+          <div class="sf-review-head"><span class="sf-avatar" style="background:#4c1d95">苏</span><b>苏同学</b><small>大学生</small></div>
+          <p>宿舍网速一般，高清版本加载也算稳定，没有太多花里胡哨的弹窗。分类很清楚，找科普类的片子基本两下就能定位。</p>
+          <div class="sf-stars">★★★★☆</div>
+        </div>
+        <div class="sf-review">
+          <div class="sf-review-head"><span class="sf-avatar" style="background:#14532d">高</span><b>高老师</b><small>中学教师</small></div>
+          <p>带学生做影像社团时用过这里的教程，步骤拆得细，术语解释也通俗。如果能出一份面向青少年的入门片单就更好了。</p>
+          <div class="sf-stars">★★★★★</div>
+        </div>
+        <div class="sf-review">
+          <div class="sf-review-head"><span class="sf-avatar" style="background:#7c2d12">唐</span><b>唐女士</b><small>全职妈妈</small></div>
+          <p>家里老人也能自己找纪录片看，界面字够大，操作不绕。内容审核让人放心，这一点比什么都重要。</p>
+          <div class="sf-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 创作工具 -->
+  <section class="sf-section sf-section--alt" id="sfTools">
+    <div class="sf-wrap">
+      <div class="sf-sec-head">
+        <div class="sf-eyebrow">Creator Tools</div>
+        <h2>创作灵感与投稿指南 · <em>陪你把想法拍完</em></h2>
+        <p>平台为创作者准备了可直接使用的结构化工具，从选题到发布，每一步都有参考路径。</p>
+      </div>
+      <div class="sf-tools-grid">
+        <div class="sf-tool">
+          <div class="sf-tool-icon">✎</div>
+          <h3>选题灵感库</h3>
+          <p>按题材与时长分类的选题卡，每张包含切入角度、可拍摄场景与常见误区提示，适合在立项阶段快速自查。</p>
+        </div>
+        <div class="sf-tool">
+          <div class="sf-tool-icon">◧</div>
+          <h3>分镜与剪辑思路</h3>
+          <p>提供纪录片、教程、Vlog 三类模板的镜头顺序参考，附带节奏建议，帮助你在素材量不足时做出取舍。</p>
+        </div>
+        <div class="sf-tool">
+          <div class="sf-tool-icon">☁</div>
+          <h3>上传与素材规范</h3>
+          <p>明确分辨率、码率、音频响度与字幕格式要求，减少反复返工。上传后可在线预览成片效果，再决定是否提交审核。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 企业动态 -->
+  <section class="sf-section" id="sfNews">
+    <div class="sf-wrap">
+      <div class="sf-sec-head">
+        <div class="sf-eyebrow">Newsroom</div>
+        <h2>企业动态 · <em>官方发布与更新日志</em></h2>
+        <p>品牌资讯、内容更新与合作公告统一在此发布，保持信息透明是平台长期坚持的原则。</p>
+      </div>
+      <div class="sf-news-list">
+        <div class="sf-news-item">
+          <time>2026-11-19</time>
+          <h3>纪录片专题《山河纪事》第六集上线<span>本集聚焦水系季节变化与沿岸村庄，配套推出主创手记与拍摄地图。</span></h3>
+          <em>内容更新</em>
+        </div>
+        <div class="sf-news-item">
+          <time>2026-11-12</time>
+          <h3>年度创作者扶持计划第二轮报名开启<span>面向长周期纪录项目与实用教程方向，入选者可获得制作支持与编审陪跑。</span></h3>
+          <em>品牌活动</em>
+        </div>
+        <div class="sf-news-item">
+          <time>2026-11-05</time>
+          <h3>高清影像素材库完成扩容<span>新增一千二百条可授权参考片段，覆盖城市、自然、手作与生活场景。</span></h3>
+          <em>平台升级</em>
+        </div>
+        <div class="sf-news-item">
+          <time>2026-10-28</time>
+          <h3>《夜行地图》夜间影像征集进入投票阶段<span>共收到投稿一千二百八十四份，用户投票通道将持续开放两周。</span></h3>
+          <em>用户共创</em>
+        </div>
+        <div class="sf-news-item">
+          <time>2026-10-15</time>
+          <h3>发布年度影像观察报告<span>梳理原创内容的题材分布与制作周期变化，为从业者提供参考数据。</span></h3>
+          <em>行业观察</em>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sf-section sf-section--alt" id="sfFaq">
+    <div class="sf-wrap">
+      <div class="sf-sec-head">
+        <div class="sf-eyebrow">Help Center</div>
+        <h2>帮助中心 · <em>常见问题</em></h2>
+        <p>若以下内容未能解决你的问题，可通过页面底部的联系方式与团队取得沟通。</p>
+      </div>
+      <div class="sf-faq">
+        <details open>
+          <summary>平台的内容是如何筛选与上架的？</summary>
+          <p>所有内容需经过清晰度检查、版权信息核验与基础审读三道流程。原创投稿会额外进入评审环节，由编审、导演与用户代表共同打分，评估维度包括叙事完整性、画面质量与表达诚意。</p>
+        </details>
+        <details>
+          <summary>我没有专业设备，可以用手机投稿吗？</summary>
+          <p>可以。平台对设备没有硬性要求，更看重内容本身的完整性与真实感。建议保证画面稳定、收音清晰，并使用自然光。上传页会给出手机拍摄的构图与收音提示。</p>
+        </details>
+        <details>
+          <summary>专题企划的选题是如何确定的？</summary>
+          <p>专题由主编团队按季度立项，会综合用户搜索趋势、创作者提案与行业变化确定方向。已立项的专题会在专题页标注更新状态，部分环节会开放用户投票参与。</p>
+        </details>
+        <details>
+          <summary>收藏和点赞的数据会保存多久？</summary>
+          <p>账号内的收藏与点赞记录会长期保留，并作为内容推荐的参考依据之一。你也可以在个人设置中随时清理这些记录。</p>
+        </details>
+        <details>
+          <summary>平台是否支持创作者之间的合作？</summary>
+          <p>支持。平台会定期组织选题共创会，为不同方向的创作者提供配对机会。已经上线的联合创作内容会在专题页集中展示，并标注合作署名。</p>
+        </details>
+        <details>
+          <summary>如何反馈内容问题或提出建议？</summary>
+          <p>每张内容卡片都提供反馈入口，可选择问题类型并补充说明。建议类反馈会进入产品评审池，被采纳的建议会在更新日志中致谢。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系 -->
+  <section class="sf-section" id="sfContact">
+    <div class="sf-wrap">
+      <div class="sf-contact">
+        <div>
+          <h2>与 360影视大全 建立联系</h2>
+          <p>无论是内容合作、品牌共建、创作者投稿还是使用建议，我们都有专人跟进。作为官方网站，我们承诺在三个工作日内给出首次回复。</p>
+          <div class="sf-contact-list">
+            <span>商务合作：<b>partner@video360.example</b></span>
+            <span>创作者投稿：<b>creator@video360.example</b></span>
+            <span>用户反馈：<b>support@video360.example</b></span>
+            <span>办公地址：<b>北京市朝阳区影像产业园 B 座 7 层</b></span>
+          </div>
+          <div class="sf-contact-actions">
+            <button class="sf-btn sf-btn-primary" type="button" data-sf-open="submit">提交投稿</button>
+            <button class="sf-btn sf-btn-ghost" type="button" data-sf-open="feedback">意见反馈</button>
+          </div>
+        </div>
+        <div class="sf-contact-card">
+          <h3>合作流程说明</h3>
+          <p>第一步，提交合作意向与内容简述；第二步，编审团队在三个工作日内完成初步评估并回复；第三步，双方确认合作形式与排期；第四步，内容进入制作与审核流程，通过后在专题或焦点位发布。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="sf-footer">
+  <div class="sf-wrap">
+    <div class="sf-footer-grid">
+      <div>
+        <div class="sf-footer-brand"><span class="sf-logo-mark" aria-hidden="true"></span>360影视大全</div>
+        <p>360影视大全官方网站，专注影视内容聚合与原创影像扶持，为创作者与企业搭建高品质内容生态，坚持正版与高清标准，持续运营，值得信赖。</p>
+      </div>
+      <div>
+        <h4>内容导航</h4>
+        <ul>
+          <li><a href="#sfFocus">焦点内容</a></li>
+          <li><a href="#sfStream">热门影像</a></li>
+          <li><a href="#sfTopics">专题企划</a></li>
+          <li><a href="#sfWall">用户作品墙</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>关于平台</h4>
+        <ul>
+          <li><a href="#sfAbout">品牌故事</a></li>
+          <li><a href="#sfAuthors">创作者矩阵</a></li>
+          <li><a href="#sfNews">企业动态</a></li>
+          <li><a href="#sfFaq">帮助中心</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>参与共建</h4>
+        <ul>
+          <li><a href="#sfTools">创作工具</a></li>
+          <li><a href="#sfContact">投稿入口</a></li>
+          <li><a href="#sfReviews">用户评价</a></li>
+          <li><a href="#sfContact">合作联系</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="sf-footer-bottom">
+      <span>© 2026 360影视大全 官方网站 · 版权所有 · 持续运营中</span>
+      <span>品牌备案号：京ICP备2026000000号-1 · 内容审核与服务监督热线 400-000-3600</span>
+    </div>
+  </div>
+</footer>
+
+<button class="sf-top" id="sfTop" type="button" aria-label="回到顶部">↑</button>
+
+<div class="sf-toast" id="sfToast" role="status" aria-live="polite"></div>
+
+<div class="sf-modal" id="sfModal" aria-hidden="true">
+  <div class="sf-modal-panel" role="dialog" aria-modal="true">
+    <button class="sf-modal-close" id="sfModalClose" type="button" aria-label="关闭">×</button>
+    <div id="sfModalBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* 提示条轮播 */
+  var noticeData = [
+    '11月19日更新：<b>纪录片专题《山河纪事》第6集上线</b>· 年度创作者扶持计划第二轮报名开启 · 高清影像素材库新增1200条参考片段',
+    '官方发布：<b>《夜行地图》夜间影像征集投票进行中</b>· 共收到投稿1284份 · 用户作品墙新增6组精选',
+    '平台升级：<b>片库支持按年份与题材组合筛选</b>· 高清版本音频响度标准化完成 · 帮助中心新增6条常见问题'
+  ];
+  var noticeText = document.getElementById('sfNoticeText');
+  var dots = document.querySelectorAll('.sf-notice-dots i');
+  var noticeIdx = 0;
+  if (noticeText && dots.length) {
+    setInterval(function(){
+      noticeIdx = (noticeIdx + 1) % noticeData.length;
+      noticeText.innerHTML = noticeData[noticeIdx];
+      dots.forEach(function(d, i){ d.classList.toggle('is-on', i === noticeIdx); });
+    }, 5000);
+  }
+
+  /* 移动端导航 */
+  var burger = document.getElementById('sfBurger');
+  var nav = document.getElementById('sfNav');
+  if (burger && nav) {
+    burger.addEventListener('click', function(){
+      nav.classList.toggle('is-open');
+      burger.textContent = nav.classList.contains('is-open') ? '×' : '☰';
+    });
+    nav.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        if (window.innerWidth <= 760) {
+          nav.classList.remove('is-open');
+          burger.textContent = '☰';
+        }
+      });
+    });
+  }
+
+  /* 搜索 */
+  var searchInput = document.getElementById('sfSearchInput');
+  var searchBtn = document.getElementById('sfSearchBtn');
+  var searchTip = document.getElementById('sfSearchTip');
+  var searchIndex = ['山河纪事','一日三餐','幕后一百人','夜行地图','家居收纳','深度测评','音乐现场','户外徒步','纪录片','科普','创作者投稿','企业动态'];
+  function doSearch(){
+    var kw = (searchInput.value || '').trim();
+    if (!kw) {
+      searchTip.textContent = '请输入影片、专题或创作者名称';
+      searchTip.classList.remove('is-hit');
+      return;
+    }
+    var hit = searchIndex.some(function(k){ return k.indexOf(kw) > -1 || kw.indexOf(k) > -1; });
+    if (hit) {
+      searchTip.textContent = '已找到与「' + kw + '」相关的内容，正在为你定位到焦点内容…';
+      searchTip.classList.add('is-hit');
+      setTimeout(function(){
+        var target = document.getElementById('sfFocus');
+        if (target) target.scrollIntoView({behavior:'smooth'});
+      }, 500);
+    } else {
+      searchTip.textContent = '暂未匹配到「' + kw + '」，可尝试「纪录片」「收纳」「测评」等关键词';
+      searchTip.classList.remove('is-hit');
+    }
+  }
+  if (searchBtn && searchInput) {
+    searchBtn.addEventListener('click', doSearch);
+    searchInput.addEventListener('keydown', function(e){
+      if (e.key === 'Enter') doSearch();
+    });
+  }
+
+  /* Toast */
+  var toast = document.getElementById('sfToast');
+  var toastTimer = null;
+  function showToast(msg){
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('is-show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('is-show'); }, 2200);
+  }
+
+  /* 点赞 / 收藏 */
+  document.querySelectorAll('[data-sf-like]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var span = btn.querySelector('span');
+      var num = parseInt(span.textContent, 10) || 0;
+      if (btn.classList.contains('is-liked')) {
+        btn.classList.remove('is-liked');
+        span.textContent = num - 1;
+        btn.firstChild.nodeValue = '♡ ';
+        showToast('已取消点赞');
+      } else {
+        btn.classList.add('is-liked');
+        span.textContent = num + 1;
+        btn.firstChild.nodeValue = '♥ ';
+        showToast('已点赞，感谢你的支持');
+      }
+    });
+  });
+  document.querySelectorAll('[data-sf-save]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if (btn.classList.contains('is-saved')) {
+        btn.classList.remove('is-saved');
+        btn.textContent = '☆ 收藏';
+        showToast('已取消收藏');
+      } else {
+        btn.classList.add('is-saved');
+        btn.textContent = '★ 已收藏';
+        showToast('已加入收藏列表');
+      }
+    });
+  });
+
+  /* 弹窗 */
+  var modal = document.getElementById('sfModal');
+  var modalBody = document.getElementById('sfModalBody');
+  var modalClose = document.getElementById('sfModalClose');
+
+  function openModal(html){
+    if (!modal) return;
+    modalBody.innerHTML = html;
+    modal.classList.add('is-show');
+    modal.setAttribute('aria-hidden','false');
+  }
+  function closeModal(){
+    if (!modal) return;
+    modal.classList.remove('is-show');
+    modal.setAttribute('aria-hidden','true');
+  }
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (modal) modal.addEventListener('click', function(e){ if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
+
+  /* 分享 */
+  var shareTitle = '';
+  document.querySelectorAll('[data-sf-share]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      shareTitle = btn.getAttribute('data-sf-share') || '360影视大全';
+      openModal(
+        '<h3>分享「' + shareTitle + '」</h3>' +
+        '<p>选择分享方式，或将链接复制后发送给朋友。分享内容仅用于交流，请尊重原创与版权。</p>' +
+        '<div class="sf-share-row">' +
+          '<button type="button" data-sf-platform="微信">微信</button>' +
+          '<button type="button" data-sf-platform="微博">微博</button>' +
+          '<button type="button" data-sf-platform="QQ">QQ</button>' +
+        '</div>' +
+        '<button class="sf-form-submit" type="button" id="sfCopyLink" style="margin-top:14px">复制链接</button>'
+      );
+      bindShareEvents();
+    });
+  });
+  function bindShareEvents(){
+    document.querySelectorAll('[data-sf-platform]').forEach(function(b){
+      b.addEventListener('click', function(){
+        showToast('已唤起' + b.getAttribute('data-sf-platform') + '分享面板（演示）');
+        closeModal();
+      });
+    });
+    var copyBtn = document.getElementById('sfCopyLink');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function(){
+        var text = '来自 360影视大全 的分享：' + shareTitle;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function(){
+            showToast('链接已复制到剪贴板');
+            closeModal();
+          }).catch(function(){
+            showToast('复制失败，请手动选择文本');
+          });
+        } else {
+          showToast('当前环境不支持自动复制');
+        }
+      });
+    }
+  }
+
+  /* 评论 */
+  document.querySelectorAll('[data-sf-comment]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var title = btn.getAttribute('data-sf-comment');
+      openModal(
+        '<h3>评论「' + title + '」</h3>' +
+        '<p>友善交流是社区的基础。请围绕作品本身表达观点，尊重不同的理解与感受。</p>' +
+        '<div class="sf-form-row"><label for="sfCommentText">你的评论</label><textarea id="sfCommentText" rows="4" placeholder="写下你的观后感或问题…"></textarea></div>' +
+        '<button class="sf-form-submit" type="button" id="sfCommentSubmit">提交评论</button>'
+      );
+      var submit = document.getElementById('sfCommentSubmit');
+      if (submit) {
+        submit.addEventListener('click', function(){
+          var val = (document.getElementById('sfCommentText').value || '').trim();
+          if (!val) {
+            showToast('评论内容不能为空');
+            return;
+          }
+          showToast('评论已提交，审核通过后将展示');
+          closeModal();
+        });
+      }
+    });
+  });
+
+  /* 投稿 / 反馈 */
+  document.querySelectorAll('[data-sf-open]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var type = btn.getAttribute('data-sf-open');
+      if (type === 'submit') {
+        openModal(
+          '<h3>创作者投稿入口</h3>' +
+          '<p>请填写基本信息与内容方向，编审团队将在三个工作日内回复。投稿不设设备门槛，重视内容完整性。</p>' +
+          '<div class="sf-form-row"><label for="sfSubName">称呼</label><input id="sfSubName" type="text" placeholder="你的昵称或团队名"></div>' +
+          '<div class="sf-form-row"><label for="sfSubType">内容方向</label>' +
+            '<select id="sfSubType"><option>纪录片</option><option>生活记录</option><option>教程干货</option><option>深度测评</option><option>音乐现场</option><option>其他</option></select></div>' +
+          '<div class="sf-form-row"><label for="sfSubDesc">作品简述</label><textarea id="sfSubDesc" rows="3" placeholder="一句话说明选题与时长…"></textarea></div>' +
+          '<button class="sf-form-submit" type="button" id="sfSubBtn">提交投稿意向</button>'
+        );
+        var subBtn = document.getElementById('sfSubBtn');
+        if (subBtn) {
+          subBtn.addEventListener('click', function(){
+            var name = (document.getElementById('sfSubName').value || '').trim();
+            if (!name) { showToast('请填写称呼'); return; }
+            showToast('投稿意向已提交，期待与你合作');
+            closeModal();
+          });
+        }
+      } else if (type === 'feedback') {
+        openModal(
+          '<h3>意见反馈</h3>' +
+          '<p>你的建议会进入产品评审池，被采纳的反馈将在更新日志中致谢。</p>' +
+          '<div class="sf-form-row"><label for="sfFbType">反馈类型</label>' +
+            '<select id="sfFbType"><option>内容问题</option><option>播放体验</option><option>功能建议</option><option>合作咨询</option></select></div>' +
+          '<div class="sf-form-row"><label for="sfFbText">具体描述</label><textarea id="sfFbText" rows="4" placeholder="请描述你遇到的问题或建议…"></textarea></div>' +
+          '<button class="sf-form-submit" type="button" id="sfFbBtn">提交反馈</button>'
+        );
+        var fbBtn = document.getElementById('sfFbBtn');
+        if (fbBtn) {
+          fbBtn.addEventListener('click', function(){
+            var val = (document.getElementById('sfFbText').value || '').trim();
+            if (!val) { showToast('请填写具体描述'); return; }
+            showToast('反馈已提交，感谢你的帮助');
+            closeModal();
+          });
+        }
+      }
+    });
+  });
+
+  /* 回到顶部 */
+  var topBtn = document.getElementById('sfTop');
+  window.addEventListener('scroll', function(){
+    if (!topBtn) return;
+    topBtn.classList.toggle('is-show', window.scrollY > 520);
+  });
+  if (topBtn) {
+    topBtn.addEventListener('click', function(){
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  }
+
+  /* 数字滚动 */
+  var statEls = document.querySelectorAll('[data-sf-count]');
+  var statDone = false;
+  function runStats(){
+    if (statDone) return;
+    var statsSection = document.getElementById('sfStats');
+    if (!statsSection) return;
+    var rect = statsSection.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 60) {
+      statDone = true;
+      statEls.forEach(function(el){
+        var target = parseInt(el.getAttribute('data-sf-count'), 10) || 0;
+        var cur = 0;
+        var step = Math.max(1, Math.floor(target / 48));
+        var timer = setInterval(function(){
+          cur += step;
+          if (cur >= target) {
+            cur = target;
+            clearInterval(timer);
+          }
+          el.textContent = cur.toLocaleString('zh-CN');
+        }, 26);
+      });
+    }
+  }
+  window.addEventListener('scroll', runStats);
+  window.addEventListener('load', runStats);
+
+  /* 导航高亮 */
+  var sections = ['sfHome','sfFocus','sfTopics','sfAuthors','sfAbout','sfNews','sfFaq'];
+  var navLinks = document.querySelectorAll('.sf-nav a');
+  window.addEventListener('scroll', function(){
+    var pos = window.scrollY + 160;
+    var current = 'sfHome';
+    sections.forEach(function(id){
+      var el = document.getElementById(id);
+      if (el && el.offsetTop <= pos) current = id;
+    });
+    navLinks.forEach(function(a){
+      a.classList.toggle('is-active', a.getAttribute('href') === '#' + current);
+    });
+  });
+})();
+</script>
+</body>
+  </html>
